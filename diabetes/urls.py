@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from firstpage import views
+from django.views.static import serve
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$',views.index,name='homepage'),
     url('predictdiabetes',views.predictdiabetes,name='predictdiabetes'),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 
 
